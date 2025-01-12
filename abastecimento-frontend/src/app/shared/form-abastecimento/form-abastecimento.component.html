@@ -1,0 +1,32 @@
+<form [formGroup]="abastecimentoForm" (ngSubmit)="onSubmit()">
+    <mat-form-field>
+        <mat-label>Data e Hora</mat-label>
+        <input matInput type="datetime-local" formControlName="dataHora">
+       <mat-error *ngIf="abastecimentoForm.get('dataHora')?.hasError('required')">Data e hora são obrigatórios</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>Placa do Veículo</mat-label>
+        <input matInput type="text" formControlName="placaVeiculo">
+         <mat-error *ngIf="abastecimentoForm.get('placaVeiculo')?.hasError('required')">A placa do veículo é obrigatória</mat-error>
+        <mat-error *ngIf="abastecimentoForm.get('placaVeiculo')?.hasError('pattern')">A placa informada é inválida</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>Quilometragem</mat-label>
+        <input matInput type="number" formControlName="quilometragem">
+         <mat-error *ngIf="abastecimentoForm.get('quilometragem')?.hasError('required')">A quilometragem é obrigatória</mat-error>
+        <mat-error *ngIf="abastecimentoForm.get('quilometragem')?.hasError('min')">A quilometragem deve ser maior que zero</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>Valor Total</mat-label>
+        <input matInput type="number" formControlName="valorTotal">
+        <mat-error *ngIf="abastecimentoForm.get('valorTotal')?.hasError('required')">O valor total do abastecimento é obrigatório</mat-error>
+       <mat-error *ngIf="abastecimentoForm.get('valorTotal')?.hasError('min')">O valor total do abastecimento deve ser maior que zero</mat-error>
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" type="submit" [disabled]="!abastecimentoForm.valid">Salvar</button>
+</form>
+
+<router-outlet>
